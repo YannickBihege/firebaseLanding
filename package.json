@@ -1,6 +1,7 @@
 {
   "name": "firebase-personal",
   "version": "0.0.0",
+  "main": "server.js",
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
