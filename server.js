@@ -1,16 +1,11 @@
-function requireHTTPS(req, res, next) {
-    // The 'x-forwarded-proto' check is for Heroku
-    if (!req.secure && req.get('x-forwarded-proto') !== 'https') {
-        return res.redirect('https://' + req.get('host') + req.url);
-    }
-    next();
-}
-const express = require('express');
-const app = express();
-app.use(requireHTTPS);
+const http = require("http");
+const port = process.env.PORT || 3000;
 
+http
+  .createServer(function (request, response) {
+    response.writeHead(200, { "Content-Type": "text/plain" });
+    response.end("Hello World!");
+  })
+  .listen(port);
 
-
-app.use(express.static('./dist/firebase-personal'));
-
-app.listen(process.env.PORT || 8080);
+console.log(`Server running at http://localhost:${port}`);
